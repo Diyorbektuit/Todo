@@ -1,0 +1,59 @@
+{% load crispy_forms_tags %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>Todo - Bosh sahifa</title>
+  </head>
+  <body>
+    <div class="container">
+        <div class="card mt-5">
+            <div class="card-header">
+                <h4>ToDolar</h4>
+            </div>
+            <div class="card-body">
+                <form  method="post">
+                    {% csrf_token %}
+                    <div class="input-group mb-3">
+                        <input required name="body" type="text" class="form-control" placeholder="Nima qilmoqchisiz.." aria-label="Nima qilmoqchisiz.." aria-describedby="button-addon2">
+                        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Tasdiqlash</button>
+                    </div>
+                      
+                </form>
+                <ol class="list-group list-group-numbered">
+                    {% for todo in todos  %}
+                     {% if todo.done %}
+                     <li class=" text-muted list-group-item list-group-item-dark d-flex justify-content-between align-items-start">
+                        <div class="ms-2 me-auto">
+                          <div class="fw-bold"><del>{{todo.body}}</del></div>
+                          {{todo.datetime}}
+                        </div>
+                        <form action="{% url 'action' todo.id 'delete' %}" method="post"> {% csrf_token %} <button class=" btn  badge bg-danger rounded-pill m-1">O'chirish</button></form>
+                      </li>
+                    {% else %}
+                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                        <div class="ms-2 me-auto">
+                          <div class="fw-bold">{{todo.body}}</div>
+                          {{todo.datetime}}
+                        </div>
+                        <form action="{% url 'action' todo.id 'done' %}" method="post"> {% csrf_token %} <button class=" btn  badge bg-success rounded-pill m-1">Bajarildi</button></form>
+                        <form action="{% url 'action' todo.id 'delete' %}" method="post"> {% csrf_token %} <button class=" btn  badge bg-danger rounded-pill m-1">O'chirish</button></form>
+                      </li>
+                     {% endif %}
+                    {% endfor %}
+                   
+                  </ol>
+                  <a href="{% url 'logout' %}" class="btn btn-warning mt-3"  >Tizimdan chiqish</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  </body>
+</html>
