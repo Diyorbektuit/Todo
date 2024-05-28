@@ -10,4 +10,4 @@ class Todo(models.Model):
     done = models.BooleanField(default=False)
     
     def __str__(self):
-        return f"Todo of {self.user.username}"
+        return f"Todo of {self.user.name}"

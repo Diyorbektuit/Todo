@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "crispy_forms",
     "crispy_bootstrap5",
     "main",
+    "users",
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
@@ -110,7 +111,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Tashkent'
 
 USE_I18N = True
 
@@ -126,9 +127,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
 LOGIN_URL = "login"
-LOGOUT_URL = "logout"
 LOGIN_REDIRECT_URL = "index"
-LOGOUT_REDIRECT_URL = "index"
