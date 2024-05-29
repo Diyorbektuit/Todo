@@ -11,8 +11,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
 from pathlib import Path
-from dotenv import load_dotenv
-load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -21,10 +19,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = str(os.getenv('SECRET_KEY'))
+SECRET_KEY = "django-insecure-+v6via=-$&=u^b&ha(dsy5q5=gfw_i8!&&i6)5bx5-0&kjeav*"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG')
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -88,6 +86,10 @@ DATABASES = {
     }
 }
 
+
+
+# Parse database configuration from environment variable
+#DATABASES['default'] = dj_database_url.parse("postgres://todo_1yt4_user:65GGQljDAqwtroqpl89RKpQjTbvEAR3K@dpg-cpbea96n7f5s73fa5sr0-a/todo_1yt4")
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
